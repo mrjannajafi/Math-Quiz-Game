@@ -1,0 +1,84 @@
+@font-face {
+  font-family: Wonder-boys;
+  src: url(../font/Wonder\ Boys\ -\ Personal\ Use.ttf);
+}
+@font-face {
+  font-family: Swansea;
+  src: url(../font/Swansea-q3pd.ttf);
+}
+:root {
+  --primary-color: #693881;
+  --secondary-color: #61f2f5;
+  --txt-color: #262626;
+  /* --txt-second-color: #676767; */
+  --white: #fff;
+  --grey: #414141;
+  --dark: #262626;
+  --app-bg: var(--primary-color);
+  --primary-font: Swansea, sans-serif;
+  --secondary-font: Wonder-boys, sans-serif;
+  overflow-x: hidden;
+}
+/****************************
+     font-size:
+     10/12/14/16/18/20/24/30/36/44/52/62/74/86/98 
+     ****************************/
+/****************************
+    whitespace:
+    2/4/8/12/16/24/32/48/64/80/96/128 
+    ****************************/
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--grey);
+}
+.title {
+  margin: 8rem auto 4.8rem auto;
+  color: var(--white);
+  font-size: 8.6rem;
+  font-weight: 600;
+  font-family: var(--secondary-font);
+  word-spacing: 1rem;
+  letter-spacing: 1rem;
+  text-shadow: 2px 1px 6px var(--secondary-color);
+}
+.description {
+  margin-bottom: 4.8rem;
+  font-family: var(--secondary-font);
+  font-size: 4.4rem;
+  text-shadow: 0 2px 0 var(--secondary-color);
+  color: var(--white);
+}
+.level__btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 3.2rem;
+  margin-top: 6.4rem;
+}
+.level__btn:link,
+.level__btn:visited {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--white);
+  width: 15rem;
+  height: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid 4px var(--secondary-color);
+  border-radius: 3rem;
+  cursor: pointer;
+  font-family: var(--secondary-font);
+  font-size: 2.4rem;
+  text-decoration: none;
+  color: #414141;
+}
+.level__btn:hover,
+.level__btn:active {
+  background-color: var(--secondary-color);
+  box-shadow: 1px 0px 6px rgba(255, 255, 255, 0.47);
+}
