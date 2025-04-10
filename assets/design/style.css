@@ -1,23 +1,13 @@
-@font-face {
-  font-family: Wonder-boys;
-  src: url(../font/Wonder\ Boys\ -\ Personal\ Use.ttf);
-}
-@font-face {
-  font-family: Swansea;
-  src: url(../font/Swansea-q3pd.ttf);
-}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Cinzel+Decorative:wght@700&display=swap");
+
 :root {
-  --primary-color: #693881;
-  --secondary-color: #61f2f5;
-  --txt-color: #262626;
-  /* --txt-second-color: #676767; */
+  --magic-purple: #6a0dad;
+  --spell-blue: #4d4dff;
+  --enchanted-gold: #ffd700;
+  --modern-gray: #2d3748;
+  --neon-pink: #ff6bff;
   --white: #fff;
-  --grey: #414141;
-  --dark: #262626;
-  --app-bg: var(--primary-color);
-  --primary-font: Swansea, sans-serif;
-  --secondary-font: Wonder-boys, sans-serif;
-  overflow-x: hidden;
+  --font: "Montserrat", sans-serif;
 }
 /****************************
      font-size:
@@ -28,57 +18,157 @@
     2/4/8/12/16/24/32/48/64/80/96/128 
     ****************************/
 body {
+  /* 
+  --make circle gradient in backgroung 
+  --use transparent to transparency 👇
+  */
+  background: radial-gradient(
+      circle at 20% 30%,
+      rgba(106, 13, 173, 0.3) 0%,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(77, 77, 255, 0.3) 0%,
+      transparent 30%
+    ),
+    linear-gradient(135deg, #0f0c29, #302b63, #24243e);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--grey);
+  min-height: 100vh;
+  font-family: var(--font);
+}
+.game-container {
+  width: 90%;
+  /* use min-width to responsive👇 */
+  min-width: 70rem;
+  padding: 4.8rem 3.2rem;
+  background-color: rgba(45, 55, 72, 0.85);
+  /* blur and transparency backgound of specific element👇 */
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(45, 55, 72, 0.638);
+  /* box shadow has 2 form outset is default and inset . we can use both for element 👇  */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(255, 215, 0, 0.1);
+  text-align: center;
 }
 .title {
-  margin: 8rem auto 4.8rem auto;
-  color: var(--white);
-  font-size: 8.6rem;
-  font-weight: 600;
-  font-family: var(--secondary-font);
-  word-spacing: 1rem;
-  letter-spacing: 1rem;
-  text-shadow: 2px 1px 6px var(--secondary-color);
+  font-family: "Cinzel Decorative", cursive;
+  font-size: 5.2rem;
+  margin: 0 0 0.4rem;
+  background: linear-gradient(90deg, var(--enchanted-gold), var(--neon-pink));
+  /* these property excute background just on text.👇 */
+  /* use webkit to Old browser */
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* use transparent to Colorless of text. 👇 */
+  color: transparent;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+}
+.title::after {
+  content: "";
+  background: linear-gradient(90deg, var(--spell-blue), var(--neon-pink));
+  width: 110px;
+  height: 3px;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
 }
 .description {
-  margin-bottom: 4.8rem;
-  font-family: var(--secondary-font);
-  font-size: 4.4rem;
-  text-shadow: 0 2px 0 var(--secondary-color);
-  color: var(--white);
+  margin: 2.4rem 0;
+  color: rgba(255, 255, 255, 0.775);
+  font-size: 1.8rem;
+  font-weight: 300;
 }
 .level__btns {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 3.2rem;
-  margin-top: 6.4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.4rem;
 }
-.level__btn:link,
-.level__btn:visited {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--white);
-  width: 15rem;
-  height: 5rem;
-  margin-left: auto;
-  margin-right: auto;
-  border: solid 4px var(--secondary-color);
-  border-radius: 3rem;
-  cursor: pointer;
-  font-family: var(--secondary-font);
-  font-size: 2.4rem;
+.level__btn {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.8rem 1rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: white;
   text-decoration: none;
-  color: #414141;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* delete after do it other */
+  row-gap: 1.2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
-.level__btn:hover,
-.level__btn:active {
-  background-color: var(--secondary-color);
-  box-shadow: 1px 0px 6px rgba(255, 255, 255, 0.47);
+.level__btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    /* total transparency */ transparent 0%,
+    /* 50% white opacity 10% */ rgba(255, 255, 255, 0.1) 50%,
+    /* total transparency */ transparent 100%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  z-index: -1;
 }
+/* transform button to up and shadow become bold 👇 */
+.level__btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.level__btn:hover::before {
+  transform: translateX(100%);
+}
+.level__btn i {
+  font-size: 3.2rem;
+}
+/* when btn hover i has changed 👇*/
+.level__btn:hover i {
+  transform: scale(1.2);
+}
+.level__btn:nth-child(1) {
+  border-top: 4px solid #4cc9f0;
+}
+.level__btn:nth-child(2) {
+  border-top: 4px solid #f8961e;
+}
+.level__btn:nth-child(3) {
+  border-top: 4px solid #f94144;
+}
+.level__btn:nth-child(1):hover{
+  background-color: rgba(76, 202, 240, 0.1);
+}
+.level__btn:nth-child(2):hover{
+  background-color: rgba(248, 150, 30, 0.1);
+}
+.level__btn:nth-child(3):hover{
+  background-color: rgba(249, 65, 68, 0.1);
+}
+.difficulty-label{
+  font-size: 1.4rem;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0.6);
+}
+
