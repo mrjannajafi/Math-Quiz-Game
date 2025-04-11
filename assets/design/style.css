@@ -171,4 +171,26 @@ body {
   font-weight: 200;
   color: rgba(255, 255, 255, 0.6);
 }
+/* Animation for magical floating runes👇 */
+@keyframes float {
+  0% , 100%{
+    transform: translateY(0);
+  }
+ 25%{
+    transform: translateY(40%);
+  }
+
+  50%{
+    transform: translateY(20%);
+  }
+}
+.rune{
+  position: absolute;
+  font-size: 2rem;
+  font-family: 'Cinzel Decorative', cursive;
+  color: rgba(255, 215, 0, 0.3);
+  animation: float 4s ease-in-out infinite;
+  z-index: -1;
+}
+
 
