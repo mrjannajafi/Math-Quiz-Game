@@ -39,6 +39,7 @@ body {
   align-items: center;
   min-height: 100vh;
   font-family: var(--font);
+  overflow: hidden;
 }
 .game-container {
   width: 90%;
@@ -90,7 +91,7 @@ body {
 .level__btns {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  gap:2.4rem;
+  gap: 2.4rem;
   margin-top: 2.4rem;
 }
 .level__btn {
@@ -157,40 +158,46 @@ body {
 .level__btn:nth-child(3) {
   border-top: 4px solid #f94144;
 }
-.level__btn:nth-child(1):hover{
+.level__btn:nth-child(1):hover {
   background-color: rgba(76, 202, 240, 0.1);
 }
-.level__btn:nth-child(2):hover{
+.level__btn:nth-child(2):hover {
   background-color: rgba(248, 150, 30, 0.1);
 }
-.level__btn:nth-child(3):hover{
+.level__btn:nth-child(3):hover {
   background-color: rgba(249, 65, 68, 0.1);
 }
-.difficulty-label{
+.difficulty-label {
   font-size: 1.4rem;
   font-weight: 200;
   color: rgba(255, 255, 255, 0.6);
 }
 /* Animation for magical floating runes👇 */
-@keyframes float {
-  0% , 100%{
-    transform: translateY(0);
+@keyframes fall {
+  0% {
+    transform: translateY(-30px) rotate(0deg);
+    opacity: 0;
   }
- 25%{
-    transform: translateY(40%);
+  10% {
+    opacity: 1;
   }
-
-  50%{
-    transform: translateY(20%);
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
   }
 }
-.rune{
+.rune {
   position: absolute;
+  user-select: none;
+  pointer-events: none;
+  top: -10px;
   font-size: 2rem;
-  font-family: 'Cinzel Decorative', cursive;
+  font-family: "Cinzel Decorative", cursive;
   color: rgba(255, 215, 0, 0.3);
-  animation: float 4s ease-in-out infinite;
+  /* linear excutes speed constantly */
+  animation: fall 4s linear infinite;
   z-index: -1;
 }
-
-

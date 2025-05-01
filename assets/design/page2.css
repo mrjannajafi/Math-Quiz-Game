@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Cinzel+Decorative:wght@700&display=swap");
+
+:root {
+  --magic-purple: #6a0dad;
+  --spell-blue: #4d4dff;
+  --accent: #4895ef;
+  --enchanted-gold: #ffd700;
+  --modern-gray: #2d3748;
+  --neon-pink: #ff6bff;
+  --white: #fff;
+  --font: "Montserrat", sans-serif;
+}
+/****************************
+     font-size:
+     10/12/14/16/18/20/24/30/36/44/52/62/74/86/98 
+     ****************************/
+/****************************
+    whitespace:
+    2/4/8/12/16/24/32/48/64/80/96/128 
+    ****************************/
+body {
+  /* 
+    --make circle gradient in backgroung 
+    --use transparent to transparency 👇
+    */
+  background: radial-gradient(
+      circle at 20% 30%,
+      rgba(106, 13, 173, 0.3) 0%,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(77, 77, 255, 0.3) 0%,
+      transparent 30%
+    ),
+    linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: var(--font);
+  overflow: hidden;
+}
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  /* use min-width to responsive👇 */
+  max-width: 70rem;
+  padding: 1.6rem 2.4rem;
+  background-color: rgba(45, 55, 72, 0.85);
+  /* blur and transparency backgound of specific element👇 */
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(45, 55, 72, 0.638);
+  /* box shadow has 2 form outset is default and inset . we can use both for element 👇  */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(255, 215, 0, 0.1);
+  text-align: center;
+  position: relative;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  margin: 0.8rem auto;
+}
+.home__btn {
+  padding: 0.6rem;
+  border-radius: 50%;
+  text-decoration: none;
+  cursor: pointer;
+}
+.home__btn i {
+  color: var(--white);
+  font-size: 2.4rem;
+  transition: all 0.4s ease-in-out;
+}
+.home__btn:hover i {
+  color: var(--accent);
+  transform: scale(1.1);
+}
+
+.question-counter {
+  width: 2rem;
+  height: 2rem;
+  font-size: 2rem;
+  color: var(--white);
+  background-color: rgba(36, 36, 62, 0.398);
+  border: 1px solid var(--white);
+  padding: 0.8rem;
+  border-radius: 50%;
+}
+.timer-counter {
+  position: relative;
+  width: 12rem;
+  height: 12rem;
+}
+.progress-circle {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg); /* Start from top */
+}
+
+.progress-bg {
+  fill: none;
+  stroke: #e0e0e0;
+  stroke-width: 10;
+}
+
+.progress-fill {
+  fill: none;
+  stroke: #4caf50;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 565.48; /* 2πr (2*3.14*90) */
+  stroke-dashoffset: 565.48;
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--white);
+}
+
+.controls {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.question-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 3rem;
+  margin: 4rem 0 2rem 0 ;
+  text-align: center;
+  width: 80%;
+}
+.question{
+  color: var(--white);
+  font-weight: 700;
+  font-size: 2.6rem;
+word-spacing: 0.5rem;
+}
+.choices{
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2 , 1fr);
+  gap: 1.6rem;
+}
+.choice{
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.2rem 2rem;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 2rem;
+  color: var(--white);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.choice:hover{
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.2);
+}
+.skip{
+  margin: 1rem 0 3rem 0;
+  width: 80%;
+  padding: 1.4rem 3rem;
+  background-color: var(--accent);
+  border-radius:10px;
+  border: none;
+  color: var(--white);
+  font-size: 1.8rem;
+  letter-spacing: 1.4px;
+  transition: all 0.3s ease-in-out;
+}
+.skip:hover{
+  background-color: var(--spell-blue);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+}

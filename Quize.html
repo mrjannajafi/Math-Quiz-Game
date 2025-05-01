@@ -1,11 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/design/reset.css" />
+    <link rel="stylesheet" href="./assets/design/page2.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <title>Arcane Math Challenge</title>
+  </head>
+  <body>
+    <main class="game-container">
+      <div class="header">
+        <a href="./index.html" class="home__btn"> <i class="fas fa-house " title="Home"></i> </a>
+        <p class="question-counter" id="questionCounter">1</p>
+      </div>
+      <div class="timer-counter" id="timerCounter">
+        <svg class="progress-circle" viewBox="0 0 200 200">
+          <circle class="progress-bg" cx="100" cy="100" r="90"></circle>
+          <circle class="progress-fill" cx="100" cy="100" r="90"></circle>
+      </svg>
+      <div class="progress-text" id="progressText">0%</div>
+          </div>
+      <div class="question-box">
+        <p class="question">4 + 5 = ?</p>
+        <div class="choices">
+          <p class="choice">7</p>
+          <p class="choice">8</p>
+          <p class="choice">6</p>
+          <p class="choice">9</p>
+        </div>
+      </div>
+      <button class="skip">
+        <i class="fas fa-forward"></i> Skip Question
+      </button>
+      </main>
+    </main>
+  </body>
 </html>

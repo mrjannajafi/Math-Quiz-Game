@@ -102,16 +102,18 @@ const runes = [
   "⚻",
   "⚼",
   "⚿",
-  "⛢"
+  "⛢",
 ];
 for (let i = 0; i < runes.length; i++) {
   const rune = document.createElement("div");
   rune.className = "rune";
   rune.textContent = runes[i];
   // جلوگیری از تجمع در یک نقطه//
-  rune.style.top = `${10 + Math.random() * 80}%`; // فاصله از لبه‌ها  //
-  rune.style.left = `${10 + Math.random() * 90}%`;
-  rune.style.animationDelay = `${Math.random() * 4}%`;
-  rune.style.animationDuration = `${3 + Math.random() * 3}s`;
+  rune.style.left = `${Math.random() * 100}%`;
+  rune.style.animationDelay = `${Math.random() * 3}%`;
+  rune.style.animationDuration = `${3 + Math.random() * 10}s`;
   body.appendChild(rune);
 }
+
+
+
