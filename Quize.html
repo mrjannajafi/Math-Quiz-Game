@@ -11,8 +11,9 @@
     />
     <title>Arcane Math Challenge</title>
   </head>
-  <body>
-    <main class="game-container">
+  <body class="loading">
+         <p id="countDown"></p>
+      <main class="game-container" id="gameContainer">
       <div class="header">
         <a href="./index.html" class="home__btn"> <i class="fas fa-house " title="Home"></i> </a>
         <p class="question-counter" id="questionCounter">1</p>
@@ -25,12 +26,8 @@
       <div class="progress-text" id="progressText">0%</div>
           </div>
       <div class="question-box">
-        <p class="question">4 + 5 = ?</p>
+        <p class="question" id="question"></p>
         <div class="choices">
-          <p class="choice">7</p>
-          <p class="choice">8</p>
-          <p class="choice">6</p>
-          <p class="choice">9</p>
         </div>
       </div>
       <button class="skip">
@@ -38,5 +35,6 @@
       </button>
       </main>
     </main>
+    <script src="./assets/script/game.js"></script>
   </body>
 </html>

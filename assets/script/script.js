@@ -115,5 +115,3 @@ for (let i = 0; i < runes.length; i++) {
   body.appendChild(rune);
 }
 
-
-

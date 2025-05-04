@@ -41,6 +41,7 @@ body {
   min-height: 100vh;
   font-family: var(--font);
   overflow: hidden;
+  position: relative;
 }
 .game-container {
   display: flex;
@@ -62,6 +63,24 @@ body {
   text-align: center;
   position: relative;
 }
+
+#countDown {
+  position: absolute;
+  font-size: 10rem;
+  color: var(--white);
+  font-weight: 700;
+
+  opacity: 0;
+}
+
+.loading #gameContainer {
+  opacity: 0;
+}
+
+.loading #countDown {
+  opacity: 1;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -141,49 +160,50 @@ body {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 15px;
   padding: 3rem;
-  margin: 4rem 0 2rem 0 ;
+  margin: 4rem 0 2rem 0;
   text-align: center;
   width: 80%;
 }
-.question{
+.question {
   color: var(--white);
   font-weight: 700;
   font-size: 2.6rem;
-word-spacing: 0.5rem;
+  word-spacing: 0.5rem;
 }
-.choices{
+.choices {
   margin-top: 2rem;
   display: grid;
-  grid-template-columns: repeat(2 , 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.6rem;
 }
-.choice{
+.choice {
   background: rgba(255, 255, 255, 0.1);
   padding: 1.2rem 2rem;
   border-radius: 10px;
+  border: none;
   font-weight: 500;
   font-size: 2rem;
   color: var(--white);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
-.choice:hover{
+.choice:hover {
   transform: translateY(-3px);
   background: rgba(255, 255, 255, 0.2);
 }
-.skip{
+.skip {
   margin: 1rem 0 3rem 0;
   width: 80%;
   padding: 1.4rem 3rem;
   background-color: var(--accent);
-  border-radius:10px;
+  border-radius: 10px;
   border: none;
   color: var(--white);
   font-size: 1.8rem;
   letter-spacing: 1.4px;
   transition: all 0.3s ease-in-out;
 }
-.skip:hover{
+.skip:hover {
   background-color: var(--spell-blue);
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
