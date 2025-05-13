@@ -5,7 +5,7 @@ const gameContainer = document.querySelector("#gameContainer");
 const progressFill = document.querySelector(".progress-fill");
 const progressText = document.querySelector("#progressText");
 const question = document.querySelector("#question");
-const choices = document.querySelectorAll(".choice");
+const choices = document.querySelector("#choices");
 
 // Progress Time bar
 
@@ -100,19 +100,19 @@ function calculat(num1, num2, operator) {
 }
 currectAnswer = calculat(num1, num2, operator);
 
-// generate Answer
-
-function generateAnswer(wrongAnswer) {
+function generateAnswer() {
   const options = [currectAnswer];
-  const numOption = Math.trunc(Math.random() * 5 + 1);
-  wrongAnswer = numOption + currectAnswer;
-  options.push(wrongAnswer);
-}
-generateAnswer();
+  while (options.length < 4) {
+    const wrongNumber = Math.trunc(Math.random() * 5 + 1) + currectAnswer;
+    if (!options.includes(wrongNumber)) {
+      options.push(wrongNumber);
+    }
+  }
+  choices.innerHTML = "";
 
-//     const html = `         
-//      <button class="choice">${option}</button>
-//      <button class="choice">${option}</button>
-//      <button class="choice">${option}</button>
-//      <button class="choice">${option}</button>
-// `;
+  options.forEach((option) => {
+    const html = `<button class="choice">${option}</button>`;
+    choices.insertAdjacentHTML("beforeend", html);
+  });
+  console.log(options);
+}
