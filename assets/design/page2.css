@@ -191,6 +191,16 @@ body {
   transform: translateY(-3px);
   background: rgba(255, 255, 255, 0.2);
 }
+.correct__btn {
+  background-color: rgba(76, 175, 79, 0.515);
+  user-select: none;
+  pointer-events: none;
+}
+.wrong__btn {
+  background-color: rgba(255, 0, 0, 0.3);
+  user-select: none;
+  pointer-events: none;
+}
 .skip {
   margin: 1rem 0 3rem 0;
   width: 80%;
