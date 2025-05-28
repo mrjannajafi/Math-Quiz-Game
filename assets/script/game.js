@@ -9,6 +9,7 @@ const choices = document.querySelector("#choices");
 const choice = document.querySelectorAll(".choice");
 const skip = document.querySelector("#skip");
 const questionCounter = document.querySelector("#questionCounter");
+const resultContainer = document.querySelector("#resultContainer");
 
 // Progress Time bar✅
 
@@ -39,6 +40,9 @@ let num1;
 let num2;
 let operator;
 let correctAnswer;
+let answeredCorrectly = 0;
+let answeredWrong = 0;
+let skipped = 0;
 const operators = ["+", "-", "*", "/"];
 const optionBtn = [...choice];
 
@@ -142,13 +146,16 @@ optionBtn.forEach((btn) => {
 
       if (button.textContent == correctAnswer) {
         button.classList.add("correct__btn");
+        answeredCorrectly++;
       }
     });
 
     if (btn.textContent != correctAnswer) {
       btn.classList.add("wrong__btn");
+      answeredWrong++;
     }
   });
+  console.log(answeredCorrectly, answeredWrong);
 });
 
 // reset Btn Option ✅
@@ -168,7 +175,8 @@ skip.addEventListener("click", (e) => {
     generateNewQuestion();
     reloadBtn();
     questionCounter.textContent = click;
-  }else{
-    gameContainer.style.opacity = '0'
+  } else {
+    gameContainer.style.display = "none";
+    resultContainer.style.display = "flex";
   }
 });

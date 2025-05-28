@@ -218,3 +218,71 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
 }
+.results-container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  /* use min-width to responsive👇 */
+  max-width: 70rem;
+  padding: 2.4rem;
+  background-color: rgba(45, 55, 72, 0.85);
+  /* blur and transparency backgound of specific element👇 */
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(45, 55, 72, 0.638);
+  /* box shadow has 2 form outset is default and inset . we can use both for element 👇  */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(255, 215, 0, 0.1);
+  text-align: center;
+  position: relative;
+}
+
+.score-display {
+  font-family: "Cinzel Decorative", cursive;
+  font-size: 2rem;
+  margin: 1rem auto;
+  background: linear-gradient(90deg, var(--enchanted-gold), var(--neon-pink));
+  /* these property excute background just on text.👇 */
+  /* use webkit to Old browser */
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* use transparent to Colorless of text. 👇 */
+  color: transparent;
+  letter-spacing: 2px;
+}
+.title-result {
+  margin: 2rem auto;
+  color: var(--white);
+  font-size: 3rem;
+  font-weight: 600;
+}
+.stats {
+  margin: 1.5rem 0;
+  text-align: center;
+  padding: 0 1rem;
+  color: var(--white);
+  font-size: 1.6rem;
+  line-height: 2;
+  letter-spacing: 1.5px;
+}
+
+#restartButton {
+  margin: 1rem 0 3rem 0;
+  width: 80%;
+  padding: 1.4rem 3rem;
+  background-color: var(--accent);
+  border-radius: 10px;
+  border: none;
+  color: var(--white);
+  font-size: 1.8rem;
+  letter-spacing: 1.4px;
+  transition: all 0.3s ease-in-out;
+}
+
+#restartButton:hover {
+  background-color: var(--spell-blue);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+}
