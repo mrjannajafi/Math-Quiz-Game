@@ -8,8 +8,9 @@ const question = document.querySelector("#question");
 const choices = document.querySelector("#choices");
 const choice = document.querySelectorAll(".choice");
 const skip = document.querySelector("#skip");
+const questionCounter = document.querySelector("#questionCounter");
 
-// Progress Time bar
+// Progress Time bar✅
 
 function runProgressTime() {
   let progress = 0; // progress bar number
@@ -32,9 +33,16 @@ function runProgressTime() {
   }
 }
 
-//  Timer befor start game
-
 let count = 4;
+let click = 0;
+let num1;
+let num2;
+let operator;
+let correctAnswer;
+const operators = ["+", "-", "*", "/"];
+const optionBtn = [...choice];
+
+//  Timer befor start game✅
 
 const countDownTime = setInterval(() => {
   countDown.textContent = --count;
@@ -50,45 +58,20 @@ const countDownTime = setInterval(() => {
 
     runProgressTime();
 
-    generateQuestion();
-
-    generateAnswer();
+    generateNewQuestion();
+    click = 1;
+    questionCounter.textContent = click;
   }
 }, 1000);
 
-// generate question
+// generate question✅
 
-let num1;
-let num2;
-let correctAnswer;
-
-const operators = ["+", "-", "*", "/"];
-
-const operator = operators[Math.trunc(Math.random() * operators.length)];
-
-// generate Number and operator
-if (operator == "/") {
-  num2 = Math.trunc(Math.random() * 5 + 1);
-  const multiplier = Math.trunc(Math.random() * 5 + 1);
-  num1 = num2 * multiplier;
-} else if (operator == "-" && num1 < num2) {
-  num2 = Math.trunc(Math.random() * 20 + 1);
-  num1 = num2 * Math.trunc(Math.random() * 20 + 1);
-} else {
-  num1 = Math.trunc(Math.random() * 20 + 1);
-  num2 = Math.trunc(Math.random() * 20 + 1);
-}
-
-console.log(operator ,  num1  , num2);
-
-function generateQuestion() {
+function displayQuestion() {
   question.innerHTML = "";
   question.textContent = `${num1} ${operator} ${num2} = ?`;
 }
 
-// calculate question ✅
-
-function calculat(num1, num2, operator) {
+function calculat() {
   switch (operator) {
     case "+":
       return num1 + num2;
@@ -108,13 +91,8 @@ function calculat(num1, num2, operator) {
       break;
   }
 }
-correctAnswer = calculat(num1, num2, operator);
 
-// generate Wrong Answer ✅
-
-const optionBtn = [...choice];
-
-function generateAnswer() {
+function generateOptions() {
   const options = [correctAnswer];
 
   while (options.length < 4) {
@@ -132,6 +110,27 @@ function generateAnswer() {
     btn.innerHTML = "";
     btn.textContent = options[index];
   });
+}
+
+function generateNewQuestion() {
+  operator = operators[Math.trunc(Math.random() * operators.length)];
+
+  if (operator === "/") {
+    num2 = Math.trunc(Math.random() * 5 + 1);
+    const multiplier = Math.trunc(Math.random() * 5 + 1);
+    num1 = num2 * multiplier;
+  } else if (operator === "-") {
+    do {
+      num1 = Math.trunc(Math.random() * 20 + 1);
+      num2 = Math.trunc(Math.random() * 20 + 1);
+    } while (num1 < num2);
+  } else {
+    num1 = Math.trunc(Math.random() * 20 + 1);
+    num2 = Math.trunc(Math.random() * 20 + 1);
+  }
+  displayQuestion();
+  correctAnswer = calculat();
+  generateOptions();
 }
 
 // click Answer ✅
@@ -164,33 +163,12 @@ function reloadBtn() {
 
 skip.addEventListener("click", (e) => {
   e.preventDefault();
-  skip.addEventListener("click", (e) => {
-  e.preventDefault();
-  
-  const operator = operators[Math.trunc(Math.random() * operators.length)];
-  
-  if (operator === "/") {
-    num2 = Math.trunc(Math.random() * 5 + 1);
-    const multiplier = Math.trunc(Math.random() * 5 + 1);
-    num1 = num2 * multiplier;
-  } 
-  else if (operator === "-") {
-    // مطمئن شو num1 >= num2 تا نتیجه غیرمنفی شود
-    do {
-      num1 = Math.trunc(Math.random() * 20 + 1);
-      num2 = Math.trunc(Math.random() * 20 + 1);
-    } while (num1 < num2); // تا وقتی num1 < num2 هست، دوباره اعداد جدید تولید کن
-  } 
-  else {
-    num1 = Math.trunc(Math.random() * 20 + 1);
-    num2 = Math.trunc(Math.random() * 20 + 1);
+  click++;
+  if (click <= 10) {
+    generateNewQuestion();
+    reloadBtn();
+    questionCounter.textContent = click;
+  }else{
+    gameContainer.style.opacity = '0'
   }
-
-  question.innerHTML = "";
-  question.textContent = `${num1} ${operator} ${num2} = ?`;
-  correctAnswer = calculat(num1, num2, operator);
-  generateAnswer();
-  reloadBtn();
-  console.log(operator, num1, num2);
-});
 });
