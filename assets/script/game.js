@@ -10,27 +10,36 @@ const choice = document.querySelectorAll(".choice");
 const skip = document.querySelector("#skip");
 const questionCounter = document.querySelector("#questionCounter");
 const resultContainer = document.querySelector("#resultContainer");
-
+const answersCorrectly = document.querySelector("#answersCorrectly");
+const answersWrong = document.querySelector("#answersWrong");
+const skipsQuestion = document.querySelector("#skipsQuestion");
+const restartButton = document.querySelector("#restartButton");
 // Progress Time bar✅
 
 function runProgressTime() {
   let progress = 0; // progress bar number
   let interval; //ذخیره زمان
   const circumference = 565.48; // 2πr (2*3.14*90) محیط دایره
-  const duration = 60; // seconds to complete full circle
+  const duration = 30; // seconds to complete full circle
 
   function updateProgress() {
     progress++;
 
-    const progressPercent = Math.min(progress, 60); //در بازه 0 تا 60 عدد باید باشد .
-    const offset = circumference - (progressPercent / 60) * circumference;
+    const progressPercent = Math.min(progress, 30); //در بازه 0 تا 60 عدد باید باشد .
+    const offset = circumference - (progressPercent / 30) * circumference;
 
     progressFill.style.strokeDashoffset = offset;
     progressText.textContent = `${Math.floor(progressPercent)}`;
+
+    if (progress >= 30) {
+      clearInterval(interval);
+      gameContainer.style.display = "none";
+      resultContainer.style.display = "flex";
+    }
   }
 
-  if (!interval || progress >= 60) {
-    interval = setInterval(updateProgress, (duration * 1000) / 60);
+  if (!interval || progress >= 30) {
+    interval = setInterval(updateProgress, (duration * 1000) / 30);
   }
 }
 
@@ -136,26 +145,42 @@ function generateNewQuestion() {
   correctAnswer = calculat();
   generateOptions();
 }
+//skip  question ✅
+
+function skipQuestion() {
+  click++;
+  if (click <= 10) {
+    generateNewQuestion();
+    reloadBtn();
+    questionCounter.textContent = click;
+  } else {
+    gameContainer.style.display = "none";
+    resultContainer.style.display = "flex";
+    skipsQuestion.textContent = 10 - (answeredCorrectly + answeredWrong);
+  }
+}
 
 // click Answer ✅
 
 optionBtn.forEach((btn) => {
-  btn.addEventListener("click", () => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
     optionBtn.forEach((button) => {
       button.disabled = true;
-
-      if (button.textContent == correctAnswer) {
-        button.classList.add("correct__btn");
-        answeredCorrectly++;
-      }
     });
+
+    if (btn.textContent == correctAnswer) {
+      btn.classList.add("correct__btn");
+      answeredCorrectly++;
+      answersCorrectly.textContent = answeredCorrectly;
+    }
 
     if (btn.textContent != correctAnswer) {
       btn.classList.add("wrong__btn");
       answeredWrong++;
+      answersWrong.textContent = answeredWrong;
     }
   });
-  console.log(answeredCorrectly, answeredWrong);
 });
 
 // reset Btn Option ✅
@@ -170,13 +195,16 @@ function reloadBtn() {
 
 skip.addEventListener("click", (e) => {
   e.preventDefault();
-  click++;
-  if (click <= 10) {
-    generateNewQuestion();
-    reloadBtn();
-    questionCounter.textContent = click;
-  } else {
-    gameContainer.style.display = "none";
-    resultContainer.style.display = "flex";
-  }
+  skipQuestion();
 });
+
+function restarGame() {
+  // count = 4;
+  // click = 0;
+  // answeredCorrectly = 0;
+  // answeredWrong = 0;
+  // skipped = 0;
+  gameContainer.style.display = "flex";
+  resultContainer.style.display = "none";
+}
+restartButton.addEventListener("click", restarGame());
