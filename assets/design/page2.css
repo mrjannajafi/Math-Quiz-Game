@@ -280,6 +280,7 @@ body {
   letter-spacing: 1.4px;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
+  
 }
 
 #restartButton:hover {

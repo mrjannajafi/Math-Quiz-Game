@@ -16,10 +16,22 @@ const skipsQuestion = document.querySelector("#skipsQuestion");
 const restartButton = document.querySelector("#restartButton");
 // Progress Time bar✅
 
+let progress = 0; // progress bar number
+let interval; //save time
+let count = 4;
+let click = 0;
+let num1;
+let num2;
+let operator;
+let correctAnswer;
+let answeredCorrectly = 0;
+let answeredWrong = 0;
+let skipped = 0;
+const operators = ["+", "-", "*", "/"];
+const optionBtn = [...choice];
+
 function runProgressTime() {
-  let progress = 0; // progress bar number
-  let interval; //ذخیره زمان
-  const circumference = 565.48; // 2πr (2*3.14*90) محیط دایره
+  const circumference = 565.48; // 2πr (2*3.14*90)
   const duration = 30; // seconds to complete full circle
 
   function updateProgress() {
@@ -43,21 +55,9 @@ function runProgressTime() {
   }
 }
 
-let count = 4;
-let click = 0;
-let num1;
-let num2;
-let operator;
-let correctAnswer;
-let answeredCorrectly = 0;
-let answeredWrong = 0;
-let skipped = 0;
-const operators = ["+", "-", "*", "/"];
-const optionBtn = [...choice];
-
 //  Timer befor start game✅
 
-const countDownTime = setInterval(() => {
+let countDownTime = setInterval(() => {
   countDown.textContent = --count;
 
   if (count == 0) {
@@ -74,6 +74,7 @@ const countDownTime = setInterval(() => {
     generateNewQuestion();
     click = 1;
     questionCounter.textContent = click;
+    gameContainer.style.display = "flex";
   }
 }, 1000);
 
@@ -160,6 +161,24 @@ function skipQuestion() {
   }
 }
 
+// restart Game
+
+function restartGame() {
+  count = 4;
+  progress = 0;
+ interval = 0; 
+  click = 0;
+  answeredCorrectly = 0;
+  answeredWrong = 0;
+  skipped = 0;
+  countDown.innerHTML = "";
+  skipsQuestion.innerHTML = "";
+  answersCorrectly.innerHTML = "";
+  answersWrong.textContent = "";
+  resultContainer.style.display = "none";
+  document.body.classList.add("loading");
+}
+
 // click Answer ✅
 
 optionBtn.forEach((btn) => {
@@ -198,13 +217,28 @@ skip.addEventListener("click", (e) => {
   skipQuestion();
 });
 
-function restarGame() {
-  // count = 4;
-  // click = 0;
-  // answeredCorrectly = 0;
-  // answeredWrong = 0;
-  // skipped = 0;
-  gameContainer.style.display = "flex";
-  resultContainer.style.display = "none";
-}
-restartButton.addEventListener("click", restarGame());
+restartButton.addEventListener("click", () => {
+  reloadBtn();
+  restartGame();
+ countDownTime = setInterval(() => {
+  countDown.textContent = --count;
+
+  if (count == 0) {
+    countDown.textContent = "start";
+  }
+
+  if (count < 0) {
+    document.body.classList.remove("loading");
+
+    clearInterval(countDownTime);
+
+    runProgressTime();
+
+    generateNewQuestion();
+    click = 1;
+    questionCounter.textContent = click;
+    gameContainer.style.display = "flex";
+  }
+}, 1000);
+
+});
