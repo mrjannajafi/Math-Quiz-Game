@@ -47,6 +47,7 @@ function runProgressTime() {
       clearInterval(interval);
       gameContainer.style.display = "none";
       resultContainer.style.display = "flex";
+      skipsQuestion.textContent = 10 - (answeredCorrectly + answeredWrong);
     }
   }
 
@@ -161,24 +162,6 @@ function skipQuestion() {
   }
 }
 
-// restart Game
-
-function restartGame() {
-  count = 4;
-  progress = 0;
- interval = 0; 
-  click = 0;
-  answeredCorrectly = 0;
-  answeredWrong = 0;
-  skipped = 0;
-  countDown.innerHTML = "";
-  skipsQuestion.innerHTML = "";
-  answersCorrectly.innerHTML = "";
-  answersWrong.textContent = "";
-  resultContainer.style.display = "none";
-  document.body.classList.add("loading");
-}
-
 // click Answer ✅
 
 optionBtn.forEach((btn) => {
@@ -217,28 +200,43 @@ skip.addEventListener("click", (e) => {
   skipQuestion();
 });
 
+// restart Game✅
+
+function restartGame() {
+  count = 4;
+  click = 0;
+  answeredCorrectly = 0;
+  answeredWrong = 0;
+  skipped = 0;
+  countDown.innerHTML = "";
+  skipsQuestion.innerHTML = "";
+  answersCorrectly.innerHTML = "0";
+  answersWrong.textContent = "0";
+  resultContainer.style.display = "none";
+  document.body.classList.add("loading");
+}
+
 restartButton.addEventListener("click", () => {
   reloadBtn();
   restartGame();
- countDownTime = setInterval(() => {
-  countDown.textContent = --count;
+  countDownTime = setInterval(() => {
+    countDown.textContent = --count;
 
-  if (count == 0) {
-    countDown.textContent = "start";
-  }
+    if (count == 0) {
+      countDown.textContent = "start";
+    }
 
-  if (count < 0) {
-    document.body.classList.remove("loading");
+    if (count < 0) {
+      document.body.classList.remove("loading");
 
-    clearInterval(countDownTime);
+      clearInterval(countDownTime);
 
-    runProgressTime();
+      runProgressTime();
 
-    generateNewQuestion();
-    click = 1;
-    questionCounter.textContent = click;
-    gameContainer.style.display = "flex";
-  }
-}, 1000);
-
+      generateNewQuestion();
+      click = 1;
+      questionCounter.textContent = click;
+      gameContainer.style.display = "flex";
+    }
+  }, 1000);
 });
